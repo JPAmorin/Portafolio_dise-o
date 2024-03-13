@@ -1,0 +1,63 @@
+body {
+    text-align: left;
+    background-color: color-mix(in lch, #AA9E55 40%, white);
+  }
+  h1{
+    font-size:65px;
+    text-align: center;
+  }
+  body label{
+    font-family: 'Times New Roman', Times, serif;
+  }
+  h2 {
+    font-style: oblique;
+  }
+  #Album_Cover{
+    border: 5px solid black;
+  }
+  #Track_List{
+    background-color: pink;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+  .Description{
+    background-color: #FFB200;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  #Menu_compras{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .Logo{
+    border: 3px solid black;
+    margin-left: 10px;
+  }
+  #titulo{
+    margin-left: 26px;
+  }
+  #pregunta{
+    margin-left: 8px;
+  }
+  #user{
+    margin-left: 36px;
+  }
+  #pass{
+    margin-left: 5px;
+  }
+  .item:visited{
+    color: black;
+  }
+  .radio:hover{
+    font-size: 25px;
+  }
+  .list::marker{
+    font-size: 8px;
+  }
+  ::placeholder{
+    color: lightskyblue;
+  }
+  .extra{
+    text-align: center;
+    font-size: 10px;
+  }
+  
