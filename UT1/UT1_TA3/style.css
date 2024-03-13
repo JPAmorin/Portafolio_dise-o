@@ -4,6 +4,9 @@
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-align: center;
 }
+.mega{
+    font-size: 30px;
+}
 #div1{
     background-color: yellow;
     font-size: 50px;
