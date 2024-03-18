@@ -1,0 +1,33 @@
+.list{
+    list-style-type: none;
+}
+#lists{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.title{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1vw, 1vh;
+    margin-left: 1vw;
+}
+.task{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.chore{
+    margin-left: 1vw;
+    padding: 1vw;
+    background-color: white;
+}
+.item{
+    display: flex;
+    width: fit-content;
+    padding-right: 1vw;
+    border-radius: 12px;
+    background-color: lightgray;
+    margin: 1vw;
+    border: 0.2vw solid black;
+}
