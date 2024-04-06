@@ -1,7 +1,6 @@
 function createCard(button){
     let parent = button.parentElement;
     let newListItem = document.createElement("li")
-    let form = document.createElement("form")
     let text = document.createElement("input")
     text.setAttribute("type","text")
     text.setAttribute("placeholder","Enter a title for this card...")
@@ -9,17 +8,26 @@ function createCard(button){
     add.textContent = "el que no anda"
     let cancel = document.createElement("button")
     cancel.textContent = "x"
-
-    form.appendChild(text)
-    form.appendChild(add)
-    form.appendChild(cancel)
-    
-    newListItem.appendChild(form)
+    newListItem.appendChild(text)
+    newListItem.appendChild(add)
+    newListItem.appendChild(cancel)
     parent.appendChild(newListItem)
-    button.remove()
-    add.addEventListener("click",e => addCard(parent,text.value))
+    add.addEventListener("click",e => addCard(parent,text,add,cancel))
 }
-function addCard(parent,text){
+function addCard(parent,text,add,cancel){
+    parent = parent.parentElement
+    let newTask = document.createElement("li")
+    let newPar = document.createElement("p")
+    newPar.textContent = text.value
+    newTask.appendChild(newPar)
+    text.remove()
+    add.remove()
+    cancel.remove()
+    parent.appendChild(newTask)
+    let newButton = document.createElement("button")
+    newButton.innerHTML = "<button class='button' class='addClassButton' onclick='createCard(this)'>Add item</button>"
+    parent.appendChild(newButton)
+    /*
     if (text != ""){   
         parent = parent.parentElement
         let newTask = document.createElement("li")
@@ -35,4 +43,5 @@ function addCard(parent,text){
         newListButton.appendChild(newButton)
         parent.appendChild(newListButton)
     }
+    */
 }
