@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>My Website</title>
+    <title>UT5_TA1</title>
     <link rel="stylesheet" href="style.css">
-  </head>
+</head>
 
-  <body>
+<body>
     <div id="board">
-        <div id="title_container">
-            <h2>Titulo board</h2>
-        </div>
+        <header>
+            <h1>Título</h1>
+        </header>
         <div id="list_container">
             <ol id="lists" class="list">
                 <li id="item1" class="item">
-                    <div id="content_item1">
+                    <div id="content_item1" class="container">
                         <div id="title_item1" class="list title">
                             <h2>To do</h2>
                         </div>
@@ -27,17 +28,23 @@
                             <li>
                                 <p class="chore">Another task</p>
                             </li>
+                            <li>
+                                <button class="button" class="addClassButton" onclick="createCard(this)">Add item</button>
+                            </li>
                         </ol>
                     </div>
                 </li>
                 <li id="item2" class="item">
-                    <div id="content_item2" class="list title">
-                        <div id="title_item2">
+                    <div id="content_item2">
+                        <div id="title_item2" class="list title">
                             <h2>On queue</h2>
                         </div>
                         <ol class="task list">
                             <li>
                                 <p class="chore">Task</p>
+                            </li>
+                            <li>
+                                <button class="button" class="addClassButton" onclick="createCard(this)">Add item</button>
                             </li>
                         </ol>
                     </div>
@@ -51,6 +58,9 @@
                             <li>
                                 <p class="chore">Task</p>
                             </li>
+                            <li>
+                                <button class="button" class="addClassButton" onclick="createCard(this)">Add item</button>
+                            </li>
                         </ol>
                     </div>
                 </li>
@@ -62,6 +72,9 @@
                         <ol class="task list">
                             <li>
                                 <p class="chore">Task</p>
+                            </li>
+                            <li>
+                                <button class="button" class="addClassButton" onclick="createCard(this)">Add item</button>
                             </li>
                         </ol>
                     </div>
@@ -75,11 +88,16 @@
                             <li>
                                 <p class="chore">Task</p>
                             </li>
+                            <li>
+                                <button class="button" class="addClassButton" onclick="createCard(this)">Add item</button>
+                            </li>
                         </ol>
                     </div>
                 </li>
             </ol>
         </div>
     </div>
-  </body>
+    <script src="script.js"></script>
+</body>
+
 </html>
