@@ -5,9 +5,9 @@ function createCard(button) {
     text.setAttribute("type", "text")
     text.setAttribute("placeholder", "Enter a title for this card...")
     let add = document.createElement("button")
-    add.textContent = "Add card"
+    add.innerHTML = "Add card"
     let cancel = document.createElement("button")
-    cancel.textContent = "x"
+    cancel.innerHTML = "x"
     newListItem.appendChild(text)
     newListItem.appendChild(add)
     newListItem.appendChild(cancel)
