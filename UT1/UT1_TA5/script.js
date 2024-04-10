@@ -124,3 +124,12 @@ openBtn.addEventListener("click", () => {
 closeBtn.addEventListener("click", () => {
     modal.classList.remove("open")
 })
+
+
+
+/*
+
+Agregar función que se llame cuando se apriete el botón de Add Task para abrir la ventana con los campos a rellenar.
+Esos datos después los toma create card o add card, ver.
+
+*/
