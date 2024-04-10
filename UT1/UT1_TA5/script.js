@@ -124,9 +124,24 @@ openBtn.addEventListener("click", () => {
 closeBtn.addEventListener("click", () => {
     modal.classList.remove("open")
 })
+const wrapper = document.getElementById('list_container');
+const cardCreator = document.getElementById("cardCreator")
 
-
-
+wrapper.addEventListener('click', (event) => {
+  const isButton = event.target.nodeName === 'BUTTON';
+  if (!isButton) {
+    return;
+  }
+  cardCreator.classList.add("open")
+})
+const submitCard = document.getElementById("submitCard")
+const cancelCard = document.getElementById("cancelCard")
+submitCard.addEventListener("click", () => {
+    cardCreator.classList.remove("open")
+})
+cancelCard.addEventListener("click", () => {
+    cardCreator.classList.remove("open")
+})
 /*
 
 Agregar función que se llame cuando se apriete el botón de Add Task para abrir la ventana con los campos a rellenar.

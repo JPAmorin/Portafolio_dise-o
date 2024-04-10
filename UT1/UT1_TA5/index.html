@@ -22,14 +22,16 @@
                             <h2>To do</h2>
                         </div>
                         <ol class="task list">
-                            <li>
+                            <li class="choreContainer">
                                 <p class="chore">Task</p>
+                                <button>aaa</button>
                             </li>
-                            <li>
+                            <li class="choreContainer">
                                 <p class="chore">Another task</p>
+                                <button>aaa</button>
                             </li>
-                            <li>
-                                <button class="button" class="addClassButton" onclick="createCard(this)">+ Add a
+                            <li class="choreContainer">
+                                <button class="button" class="addClassButton">+ Add a
                                     card</button>
                             </li>
                         </ol>
@@ -41,11 +43,12 @@
                             <h2>On queue</h2>
                         </div>
                         <ol class="task list">
-                            <li>
+                            <li class="choreContainer">
                                 <p class="chore">Task</p>
+                                <button>aaa</button>
                             </li>
-                            <li>
-                                <button class="button" class="addClassButton" onclick="createCard(this)">+ Add a
+                            <li class="choreContainer">
+                                <button class="button" class="addClassButton">+ Add a
                                     card</button>
                             </li>
                         </ol>
@@ -57,12 +60,12 @@
                             <h2>Doing</h2>
                         </div>
                         <ol class="task list">
-                            <li>
+                            <li class="choreContainer">
                                 <p class="chore">Task</p>
+                                <button>aaa</button>
                             </li>
-                            <li>
-                                <button class="button" class="addClassButton" onclick="createCard(this)">+ Add a
-                                    card</button>
+                            <li class="choreContainer">
+                                <button class="button" class="addClassButton">+ Add a card</button>
                             </li>
                         </ol>
                     </div>
@@ -73,11 +76,12 @@
                             <h2>Postponed</h2>
                         </div>
                         <ol class="task list">
-                            <li>
+                            <li class="choreContainer">
                                 <p class="chore">Task</p>
+                                <button>aaa</button>
                             </li>
-                            <li>
-                                <button class="button" class="addClassButton" onclick="createCard(this)">+ Add a
+                            <li class="choreContainer">
+                                <button class="button" class="addClassButton">+ Add a
                                     card</button>
                             </li>
                         </ol>
@@ -89,12 +93,12 @@
                             <h2>Done</h2>
                         </div>
                         <ol class="task list">
-                            <li>
+                            <li class="choreContainer">
                                 <p class="chore">Task</p>
+                                <button>aaa</button>
                             </li>
-                            <li>
-                                <button class="button" class="addClassButton" onclick="createCard(this)">+ Add a
-                                    card</button>
+                            <li class="choreContainer">
+                                <button class="button" class="addClassButton">+ Add a card</button>
                             </li>
                         </ol>
                     </div>
@@ -105,16 +109,6 @@
             </ol>
         </div>
     </div>
-    <button id="openModal">Open modal</button>
-    <div class="modal" id="modal">
-        <div class="modal_inner">
-            <h2>Cool tutorial!</h2>
-            <p>
-                ñangañangañanga
-            </p>
-            <button id="closeModal">Close</button>
-        </div>
-    </div>
     <div class="card" id="cardCreator">
         <div class="card_inner">
             <input type="text" id="taskTitulo" placeholder="Insert your task title...">
@@ -123,6 +117,8 @@
             <input type="text" id="taskEnd" placeholder="Insert the end date...">
             <input type="text" id="taskStatus" placeholder="Insert the task status...">
             <input type="text" id="taskPriority" placeholder="Insert the priority of the task...">
+            <button id="submitCard">Add task</button>
+            <button id="cancelCard">Cancel</button>
         </div>
     </div>
     <script src="script.js"></script>
