@@ -1,29 +1,9 @@
-function createCard(button) {
-    let parent = button.parentElement;
-    let newListItem = document.createElement("li")
-    let text = document.createElement("input")
-    text.setAttribute("type", "text")
-    text.setAttribute("placeholder", "Enter a title for this card...")
-    let add = document.createElement("button")
-    add.innerHTML = "Add card"
-    let cancel = document.createElement("button")
-    cancel.innerHTML = "x"
-    newListItem.appendChild(text)
-    newListItem.appendChild(add)
-    newListItem.appendChild(cancel)
-    parent.appendChild(newListItem)
-    button.remove()
-    add.addEventListener("click", e => addCard(parent, text, add, cancel))
-    cancel.addEventListener("click", e => removeForm(parent, text, add, cancel))
-}
-
-function addCard(parent, taskTitulo, taskDescription, taskStart, taskEnd,taskStatus,taskPriority) {
-    alert(taskTitulo.value != "")
-    if (taskTitulo.value != "") {
+function addCard(parent, taskTitle, taskDescription, taskStart, taskEnd,taskStatus,taskPriority) {
+    if (taskTitle.value != "") {
         parent = parent.parentElement
         let newTask = document.createElement("li")
         let newPar = document.createElement("p")
-        newPar.innerHTML = `<p class = "chore">${taskTitulo.value}</p>`
+        newPar.innerHTML = `<p class = "chore">${taskTitle.value}</p>`
         newTask.appendChild(newPar)
         parent.appendChild(newTask)
         let newButton = document.createElement("button")
@@ -31,8 +11,6 @@ function addCard(parent, taskTitulo, taskDescription, taskStart, taskEnd,taskSta
         newButton.setAttribute("onclick", "createCard(this)")
         newButton.textContent = "+ Add a card"
         parent.appendChild(newButton)
-    } else {
-        removeForm(parent, text, add, cancel)
     }
 }
 
@@ -66,7 +44,9 @@ function addTitle(titleContainer, text, add, cancel) {
 
     container.setAttribute("class", "item")
     title.textContent = text.value
-    newButton.innerHTML = "<button class='button' class='addClassButton' onclick='createCard(this)'>+ Add card</button>"
+    newButton.innerHTML = "+ Add card"
+    newButton.setAttribute("class","button addClassButton")
+    
     text.remove()
     add.remove()
     cancel.remove()
@@ -104,11 +84,6 @@ function removeForm(parent, text, add, cancel) {
         add.remove()
         cancel.remove()
         newButton.innerHTML = "<button class='button' class='addClassButton' onclick='createList(this)'>+ Add another list</button>"
-    } else {
-        text.remove()
-        add.remove()
-        cancel.remove()
-        newButton.innerHTML = "<button class='button' class='addClassButton' onclick='createCard(this)'>+ Add card</button>"
     }
     parent.appendChild(newButton)
 }
@@ -122,18 +97,19 @@ wrapper.addEventListener('click', (event) => {
         return;
     }
     parent = event.target.parentElement
+    let button = event.target
     cardCreator.classList.add("open")
 })
 const submitCard = document.getElementById("submitCard")
 const cancelCard = document.getElementById("cancelCard")
 submitCard.addEventListener("click", () => {
-    const taskTitulo = document.getElementById("taskTitulo")
+    const taskTitle = document.getElementById("taskTitle")
     const taskDescription = document.getElementById("taskDescription")
     const taskStart = document.getElementById("taskStart")
     const taskEnd = document.getElementById("taskEnd")
     const taskStatus = document.getElementById("taskStatus")
     const taskPriority = document.getElementById("taskPriority")
-    addCard(parent,taskTitulo,taskDescription,taskStart,taskEnd,taskStatus,taskPriority)
+    addCard(parent,taskTitle,taskDescription,taskStart,taskEnd,taskStatus,taskPriority)
     cardCreator.classList.remove("open")
 })
 cancelCard.addEventListener("click", () => {
