@@ -17,16 +17,14 @@ function createCard(button) {
     cancel.addEventListener("click", e => removeForm(parent, text, add, cancel))
 }
 
-function addCard(parent, text, add, cancel) {
-    if (text.value != "") {
+function addCard(parent, taskTitulo, taskDescription, taskStart, taskEnd,taskStatus,taskPriority) {
+    alert(taskTitulo.value != "")
+    if (taskTitulo.value != "") {
         parent = parent.parentElement
         let newTask = document.createElement("li")
         let newPar = document.createElement("p")
-        newPar.innerHTML = `<p class = "chore">${text.value}</p>`
+        newPar.innerHTML = `<p class = "chore">${taskTitulo.value}</p>`
         newTask.appendChild(newPar)
-        text.remove()
-        add.remove()
-        cancel.remove()
         parent.appendChild(newTask)
         let newButton = document.createElement("button")
         newButton.setAttribute("class", "button addClassButton")
@@ -114,29 +112,28 @@ function removeForm(parent, text, add, cancel) {
     }
     parent.appendChild(newButton)
 }
-
-const openBtn = document.getElementById("openModal")
-const closeBtn = document.getElementById("closeModal")
-const modal = document.getElementById("modal")
-openBtn.addEventListener("click", () => {
-    modal.classList.add("open")
-})
-closeBtn.addEventListener("click", () => {
-    modal.classList.remove("open")
-})
-const wrapper = document.getElementById('list_container');
+const wrapper = document.getElementById('list_container')
 const cardCreator = document.getElementById("cardCreator")
+let parent
 
 wrapper.addEventListener('click', (event) => {
-  const isButton = event.target.nodeName === 'BUTTON';
-  if (!isButton) {
-    return;
-  }
-  cardCreator.classList.add("open")
+    const isButton = event.target.matches('.addClassButton');
+    if (!isButton) {
+        return;
+    }
+    parent = event.target.parentElement
+    cardCreator.classList.add("open")
 })
 const submitCard = document.getElementById("submitCard")
 const cancelCard = document.getElementById("cancelCard")
 submitCard.addEventListener("click", () => {
+    const taskTitulo = document.getElementById("taskTitulo")
+    const taskDescription = document.getElementById("taskDescription")
+    const taskStart = document.getElementById("taskStart")
+    const taskEnd = document.getElementById("taskEnd")
+    const taskStatus = document.getElementById("taskStatus")
+    const taskPriority = document.getElementById("taskPriority")
+    addCard(parent,taskTitulo,taskDescription,taskStart,taskEnd,taskStatus,taskPriority)
     cardCreator.classList.remove("open")
 })
 cancelCard.addEventListener("click", () => {
