@@ -97,8 +97,25 @@ wrapper.addEventListener('click', (event) => {
         return;
     }
     parent = event.target.parentElement
-    let button = event.target
     cardCreator.classList.add("open")
+})
+wrapper.addEventListener('click', (event) => {
+    const showChore = event.target.matches('.showChore');
+    if (!showChore) {
+        return;
+    }
+    parent = event.target.parentElement
+    let chroeShow = parent.querySelector('.choreDetails')
+    chroeShow.classList.add("open")
+    
+})
+wrapper.addEventListener('click', (event) => {
+    const hideChore = event.target.matches('.hideChore')
+    if (!hideChore) {
+        return
+    }
+    parent = event.target.parentElement
+    parent.classList.remove("open")
 })
 const submitCard = document.getElementById("submitCard")
 const cancelCard = document.getElementById("cancelCard")
