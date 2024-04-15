@@ -1,16 +1,29 @@
 function addCard(parent, taskTitle, taskDescription, taskStart, taskEnd,taskStatus,taskPriority) {
     if (taskTitle.value != "") {
-        parent = parent.parentElement
+        let oldButton = parent.querySelector(".addClassButton")
+        oldButton.remove()
         let newTask = document.createElement("li")
         let newPar = document.createElement("p")
         newPar.innerHTML = `<p class = "chore">${taskTitle.value}</p>`
-        newTask.appendChild(newPar)
-        parent.appendChild(newTask)
+        newTask.setAttribute('class', 'choreContainer')
+        parent.appendChild(newPar)
+
+        let newDiv = document.createElement("div")
+        newDiv.innerHTML = `<div class="choreDetails"> <h2 class="taskTitle">${taskTitle.value}</h2> <p class="taskDescription">${taskDescription.value}</p> <p class="taskStart">${taskStart.value}</p> <p class="taskEnd">${taskEnd.value}</p> <p class="taskStatus">${taskStatus.value}</p> <p class="taskPriority">${taskPriority.value}</p> <button class="hideChore">Close details</button> </div>`
+        parent.appendChild(newDiv)
+
+        let showDivButton = document.createElement("button")
+        showDivButton.setAttribute("class","showChore")
+        showDivButton.textContent = "aaa"
+        parent.appendChild(showDivButton)
+        
+        parent = parent.parentElement
         let newButton = document.createElement("button")
         newButton.setAttribute("class", "button addClassButton")
         newButton.setAttribute("onclick", "createCard(this)")
         newButton.textContent = "+ Add a card"
-        parent.appendChild(newButton)
+        newTask.appendChild(newButton)
+        parent.appendChild(newTask)
     }
 }
 
