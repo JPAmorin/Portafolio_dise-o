@@ -63,6 +63,14 @@ h1{
     opacity: 1;
     z-index: 999;
 }
+.card_inner{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    background-color: black;
+    padding: 5vw, 10vw, 10vw, 5vw;
+}
 .choreContainer{
     display: flex;
     flex-direction: row;
@@ -88,6 +96,13 @@ h1{
     z-index: 999;
     margin: auto;
 }
+#taskTitle{margin-bottom: 5%;}
+#taskDescription{margin-bottom: 5%;}
+#taskStart{margin-bottom: 5%;}
+#taskEnd{margin-bottom: 5%;}
+#taskStatus{margin-bottom: 5%;}
+#taskPriority{margin-bottom: 5%;}
+#submitCard{margin-bottom: 5%;}
 @media (width < 426px){
     #lists{
         display: flex;

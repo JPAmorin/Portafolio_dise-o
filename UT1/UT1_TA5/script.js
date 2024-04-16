@@ -24,6 +24,7 @@ function addCard(parent, taskTitle, taskDescription, taskStart, taskEnd,taskStat
         newButton.textContent = "+ Add a card"
         newTask.appendChild(newButton)
         parent.appendChild(newTask)
+        clearInputs(taskTitle, taskDescription, taskStart, taskEnd,taskStatus,taskPriority)
     }
 }
 
@@ -100,6 +101,15 @@ function removeForm(parent, text, add, cancel) {
     }
     parent.appendChild(newButton)
 }
+
+function clearInputs(taskTitle, taskDescription, taskStart, taskEnd,taskStatus,taskPriority){
+    taskTitle.value = ""
+    taskDescription.value = "" 
+    taskStart.value = "" 
+    taskEnd.value = ""
+    taskStatus.value = ""
+    taskPriority.value = ""
+}   
 const wrapper = document.getElementById('list_container')
 const cardCreator = document.getElementById("cardCreator")
 let parent
