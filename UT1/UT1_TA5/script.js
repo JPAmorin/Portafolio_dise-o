@@ -9,20 +9,12 @@ function loadTasks(){
         Response.forEach(task => {
             let parent = document.getElementById(task["status"])
             parent = parent.getElementsByClassName("task list")[0]
-            console.log(task)
-            console.log(task["title"])
-            console.log(task["description"])
-            console.log(task["startDate"])
-            console.log(task["endDate"])
-            console.log(task["status"])
-            console.log(task["priority"])
-            
-            loadCard(parent,task["title"],task["description"],task["startDate"],task["endDate"],task["status"],task["priority"])
+            loadCard(parent,task["title"],task["description"],task["startDate"],task["endDate"],task["status"],task["priority"],task["comments"])
         });
     })
 }
 
-function loadCard(parent, taskTitle, taskDescription, taskStart, taskEnd,taskStatus,taskPriority) {
+function loadCard(parent, taskTitle, taskDescription, taskStart, taskEnd,taskStatus,taskPriority,taskComments) {
     if (taskTitle != "") {
         let oldButton = parent.querySelector(".addClassButton")
         oldButton.remove()
@@ -36,7 +28,10 @@ function loadCard(parent, taskTitle, taskDescription, taskStart, taskEnd,taskSta
 
         let newDiv = document.createElement("div")
         newDiv.setAttribute("class","choreDetails")
-        newDiv.innerHTML = `<h2 class="taskTitle">${taskTitle}</h2> <p class="taskDescription">${taskDescription}</p> <p class="taskStart">${taskStart}</p> <p class="taskEnd">${taskEnd}</p> <p class="taskStatus">${taskStatus}</p> <p class="taskPriority">${taskPriority}</p> <button class="hideChore">Close details</button>`
+        let newDivInner = document.createElement("div")
+        newDivInner.setAttribute("class","choreDetails_Inner")
+        newDivInner.innerHTML = `<h2 class="taskTitle">${taskTitle}</h2> <p class="taskDescription">${taskDescription}</p> <p class="taskStart">${taskStart}</p> <p class="taskEnd">${taskEnd}</p> <p class="taskStatus">${taskStatus}</p> <p class="taskPriority">${taskPriority}</p> <p class="taskComments">${taskComments}</p> <button class="hideChore">Close details</button>`
+        newDiv.appendChild(newDivInner)
         choreContainer.appendChild(newDiv)
 
         let showDivButton = document.createElement("button")
@@ -56,6 +51,8 @@ function loadCard(parent, taskTitle, taskDescription, taskStart, taskEnd,taskSta
 
 function addCard(parent, taskTitle, taskDescription, taskStart, taskEnd,taskStatus,taskPriority) {
     if (taskTitle.value != "") {
+        /*
+        MANDAR DATOS AL BACKEND PARA CHECKEAR Y SUBIR, LIMPIAR IMPUTS, FETCHEAR DATOS
         let oldButton = parent.querySelector(".addClassButton")
         oldButton.remove()
         let newTask = document.createElement("li")
@@ -80,7 +77,8 @@ function addCard(parent, taskTitle, taskDescription, taskStart, taskEnd,taskStat
         newButton.textContent = "+ Add a card"
         newTask.appendChild(newButton)
         parent.appendChild(newTask)
-        clearInputs(taskTitle, taskDescription, taskStart, taskEnd,taskStatus,taskPriority)
+        */
+        clearInputs(taskTitle, taskDescription, taskStart, taskEnd,taskStatus,taskPriority,taskComments)
     }
 }
 
@@ -171,13 +169,14 @@ function removeListForm(parent, text, add, cancel) {
     parent.appendChild(newButton)
 }
 
-function clearInputs(taskTitle, taskDescription, taskStart, taskEnd,taskStatus,taskPriority){
+function clearInputs(taskTitle, taskDescription, taskStart, taskEnd,taskStatus,taskPriority,taskComments){
     taskTitle.value = ""
     taskDescription.value = "" 
     taskStart.value = "" 
     taskEnd.value = ""
     taskStatus.value = ""
     taskPriority.value = ""
+    taskComments.value = ""
 }   
 const wrapper = document.getElementById('list_container')
 const cardCreator = document.getElementById("cardCreator")
@@ -207,6 +206,7 @@ wrapper.addEventListener('click', (event) => {
         return
     }
     parent = event.target.parentElement
+    parent = parent.parentElement
     parent.classList.remove("open")
 })
 const submitCard = document.getElementById("submitCard")
@@ -218,7 +218,8 @@ submitCard.addEventListener("click", () => {
     const taskEnd = document.getElementById("taskEnd")
     const taskStatus = document.getElementById("taskStatus")
     const taskPriority = document.getElementById("taskPriority")
-    addCard(parent,taskTitle,taskDescription,taskStart,taskEnd,taskStatus,taskPriority)
+    const taskComments = document.getElementById("taskComments")
+    addCard(parent,taskTitle,taskDescription,taskStart,taskEnd,taskStatus,taskPriority,taskComments)
     cardCreator.classList.remove("open")
 })
 cancelCard.addEventListener("click", () => {
