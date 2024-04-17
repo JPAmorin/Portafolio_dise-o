@@ -1,3 +1,59 @@
+async function fetchStuff(){
+    let stuff = await fetch("http://localhost:3000/api/tasks")
+    let tasks = await stuff.json()
+    return tasks
+}
+function loadTasks(){
+    let tasks = fetchStuff();
+    tasks.then((Response) =>{
+        Response.forEach(task => {
+            let parent = document.getElementById(task["status"])
+            parent = parent.getElementsByClassName("task list")[0]
+            console.log(task)
+            console.log(task["title"])
+            console.log(task["description"])
+            console.log(task["startDate"])
+            console.log(task["endDate"])
+            console.log(task["status"])
+            console.log(task["priority"])
+            
+            loadCard(parent,task["title"],task["description"],task["startDate"],task["endDate"],task["status"],task["priority"])
+        });
+    })
+}
+
+function loadCard(parent, taskTitle, taskDescription, taskStart, taskEnd,taskStatus,taskPriority) {
+    if (taskTitle != "") {
+        let oldButton = parent.querySelector(".addClassButton")
+        oldButton.remove()
+        let choreContainer = parent.querySelector(".choreContainer:last-child")
+        let newTask = document.createElement("li")
+        let newPar = document.createElement("p")
+        newPar.setAttribute("class","chore")
+        newPar.innerHTML = `${taskTitle}`
+        newTask.setAttribute('class', 'choreContainer')
+        choreContainer.appendChild(newPar)
+
+        let newDiv = document.createElement("div")
+        newDiv.setAttribute("class","choreDetails")
+        newDiv.innerHTML = `<h2 class="taskTitle">${taskTitle}</h2> <p class="taskDescription">${taskDescription}</p> <p class="taskStart">${taskStart}</p> <p class="taskEnd">${taskEnd}</p> <p class="taskStatus">${taskStatus}</p> <p class="taskPriority">${taskPriority}</p> <button class="hideChore">Close details</button>`
+        choreContainer.appendChild(newDiv)
+
+        let showDivButton = document.createElement("button")
+        showDivButton.setAttribute("class","button showChore")
+        showDivButton.textContent = "aaa"
+        choreContainer.appendChild(showDivButton)
+        
+        parent = parent.parentElement
+        let newButton = document.createElement("button")
+        newButton.setAttribute("class", "button addClassButton")
+        newButton.setAttribute("onclick", "createCard(this)")
+        newButton.textContent = "+ Add a card"
+        newTask.appendChild(newButton)
+        parent.appendChild(newTask)
+    }
+}
+
 function addCard(parent, taskTitle, taskDescription, taskStart, taskEnd,taskStatus,taskPriority) {
     if (taskTitle.value != "") {
         let oldButton = parent.querySelector(".addClassButton")
@@ -13,7 +69,7 @@ function addCard(parent, taskTitle, taskDescription, taskStart, taskEnd,taskStat
         parent.appendChild(newDiv)
 
         let showDivButton = document.createElement("button")
-        showDivButton.setAttribute("class","showChore")
+        showDivButton.setAttribute("class","button showChore")
         showDivButton.textContent = "aaa"
         parent.appendChild(showDivButton)
         
@@ -151,21 +207,8 @@ wrapper.addEventListener('click', (event) => {
         return
     }
     parent = event.target.parentElement
-    parent = parent.parentElement
     parent.classList.remove("open")
-})/*
-wrapper.addEventListener('click',(event) => {
-    const addList = event.target.matches('.addList')
-    if (!addList) {
-        return
-    }
 })
-wrapper.addEventListener('click',(event) => {
-    const cancelList = event.target.matches('.cancelList')
-    if (!cancelList) {
-        return
-    }
-})*/
 const submitCard = document.getElementById("submitCard")
 const cancelCard = document.getElementById("cancelCard")
 submitCard.addEventListener("click", () => {
@@ -181,21 +224,12 @@ submitCard.addEventListener("click", () => {
 cancelCard.addEventListener("click", () => {
     cardCreator.classList.remove("open")
 })
-/*
-const createListButton = document.getElementById("addListButton")
-createListButton.addEventListener('click',e =>createList(createListButton))
-*/
+
 wrapper.addEventListener('click',(event) => {
     const addList = event.target.matches('.addListButton')
-    alert(addList)
     if (!addList) {
         return
     }
     createList(event.target)
 })
-/*
-
-Agregar función que se llame cuando se apriete el botón de Add Task para abrir la ventana con los campos a rellenar.
-Esos datos después los toma create card o add card, ver.
-
-*/
+fetchStuff()
