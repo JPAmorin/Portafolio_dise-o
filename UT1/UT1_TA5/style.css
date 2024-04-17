@@ -68,8 +68,10 @@ h1{
     flex-direction: column;
     align-items: center;
     justify-items: center;
+    justify-content: space-around;
     background-color: black;
-    padding: 5vw, 10vw, 10vw, 5vw;
+    height: 55%;
+    width: 55%;
 }
 .choreContainer{
     display: flex;
@@ -96,13 +98,6 @@ h1{
     z-index: 999;
     margin: auto;
 }
-#taskTitle{margin-bottom: 5%;}
-#taskDescription{margin-bottom: 5%;}
-#taskStart{margin-bottom: 5%;}
-#taskEnd{margin-bottom: 5%;}
-#taskStatus{margin-bottom: 5%;}
-#taskPriority{margin-bottom: 5%;}
-#submitCard{margin-bottom: 5%;}
 @media (width < 426px){
     #lists{
         display: flex;

@@ -29,21 +29,23 @@ function addCard(parent, taskTitle, taskDescription, taskStart, taskEnd,taskStat
 }
 
 function createList(button) {
-    let parent = document.getElementById("list_container")
+    let parent = button.parentElement
     let titleContainer = button.parentElement
     button.remove()
     let text = document.createElement("input")
     text.setAttribute("type", "text")
     text.setAttribute("placeholder", "Enter list title...")
     let add = document.createElement("button")
+    add.setAttribute("class","button addList")
     add.innerHTML = "Add card"
     let cancel = document.createElement("button")
+    cancel.setAttribute("class","cancelList")
     cancel.innerHTML = "x"
     titleContainer.appendChild(text)
     titleContainer.appendChild(add)
     titleContainer.appendChild(cancel)
     add.addEventListener("click", e => addTitle(titleContainer, text, add, cancel))
-    cancel.addEventListener("click", e => removeForm(parent, text, add, cancel))
+    cancel.addEventListener("click", e => removeListForm(parent, text, add, cancel))
 }
 function addTitle(titleContainer, text, add, cancel) {
 
@@ -82,8 +84,8 @@ function addTitle(titleContainer, text, add, cancel) {
     newListButtonContainer.setAttribute("class", "list title")
 
     let newListButton = document.createElement("button")
-    newListButton.setAttribute("class", "button")
-    newListButton.setAttribute("onclick", "createList(this)")
+    newListButton.setAttribute("class", "button addListButton")
+    newListButton.setAttribute("id","addListButton")
     newListButton.textContent = "+ Add another list"
     newListButtonContainer.appendChild(newListButton)
 
@@ -99,6 +101,17 @@ function removeForm(parent, text, add, cancel) {
         cancel.remove()
         newButton.innerHTML = "<button class='button' class='addClassButton' onclick='createList(this)'>+ Add another list</button>"
     }
+    parent.appendChild(newButton)
+}
+
+function removeListForm(parent, text, add, cancel) {
+    let newButton = document.createElement("button")
+    text.remove()
+    add.remove()
+    cancel.remove()
+    newButton.setAttribute("class","button addListButton")
+    newButton.setAttribute("id","addListButton")
+    newButton.textContent = "+ Add another list"
     parent.appendChild(newButton)
 }
 
@@ -138,8 +151,21 @@ wrapper.addEventListener('click', (event) => {
         return
     }
     parent = event.target.parentElement
+    parent = parent.parentElement
     parent.classList.remove("open")
+})/*
+wrapper.addEventListener('click',(event) => {
+    const addList = event.target.matches('.addList')
+    if (!addList) {
+        return
+    }
 })
+wrapper.addEventListener('click',(event) => {
+    const cancelList = event.target.matches('.cancelList')
+    if (!cancelList) {
+        return
+    }
+})*/
 const submitCard = document.getElementById("submitCard")
 const cancelCard = document.getElementById("cancelCard")
 submitCard.addEventListener("click", () => {
@@ -154,6 +180,18 @@ submitCard.addEventListener("click", () => {
 })
 cancelCard.addEventListener("click", () => {
     cardCreator.classList.remove("open")
+})
+/*
+const createListButton = document.getElementById("addListButton")
+createListButton.addEventListener('click',e =>createList(createListButton))
+*/
+wrapper.addEventListener('click',(event) => {
+    const addList = event.target.matches('.addListButton')
+    alert(addList)
+    if (!addList) {
+        return
+    }
+    createList(event.target)
 })
 /*
 
