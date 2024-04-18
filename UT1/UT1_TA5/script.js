@@ -51,6 +51,21 @@ function loadCard(parent, taskTitle, taskDescription, taskStart, taskEnd,taskSta
 
 function addCard(parent, taskTitle, taskDescription, taskStart, taskEnd,taskStatus,taskPriority) {
     if (taskTitle.value != "") {
+        const options = {
+            method: 'POST',
+            body : JSON.stringify({
+                title: taskTitle.value,
+                description: taskDescription.value,
+                startDate: taskStart.value,
+                endDate: taskEnd.value,
+                status: taskStatus.value,
+                priority: taskPriority.value,
+            }),
+        }
+        fetch("http://localhost:3000/api/tasks",options)
+                
+        .then((response) => response.json())
+        .then((json) => console.log(json))
         /*
         MANDAR DATOS AL BACKEND PARA CHECKEAR Y SUBIR, LIMPIAR IMPUTS, FETCHEAR DATOS
         let oldButton = parent.querySelector(".addClassButton")
