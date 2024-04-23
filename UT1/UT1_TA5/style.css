@@ -1,3 +1,9 @@
+body {
+    background-image: url("4k-forest-7sfd6znw2ry6hnlt.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+   }
 .list{
     list-style-type: none;
 }
@@ -27,7 +33,8 @@
     display: flex;
     width: 15%;
     border-radius: 12px;
-    background-color: lightgray;
+    background: rgb(7,55,150);
+    background: linear-gradient(165deg, rgba(7,55,150,1) 0%, rgba(24,130,145,1) 100%);
     margin: 1vw;
     border: 0.2vw solid black;
 }
@@ -97,6 +104,28 @@ h1{
     opacity: 1;
     z-index: 999;
     margin: auto;
+}
+.showChore{
+    width: fit-content;
+    height: fit-content;
+    border-radius: 15px;
+    background: rgb(9,79,217);
+    background: linear-gradient(90deg, rgba(9,79,217,1) 0%, rgba(27,201,226,1) 100%, rgba(0,212,255,1) 100%);
+}
+.addClassButton{
+    border: 2px solid black;
+    margin-bottom: 2vw;
+}
+.addListButton{
+    width: fit-content;
+    height: fit-content;
+}
+#titleContainer{
+    width: fit-content;
+    margin-left: 5%;
+    padding-left: 1%;
+    padding-right: 1%;
+    background-color: aliceblue;
 }
 @media (width < 426px){
     #lists{
