@@ -36,7 +36,7 @@ function loadCard(parent, taskTitle, taskDescription, taskStart, taskEnd,taskSta
 
         let showDivButton = document.createElement("button")
         showDivButton.setAttribute("class","button showChore")
-        showDivButton.textContent = "aaa"
+        showDivButton.textContent = "Show details"
         choreContainer.appendChild(showDivButton)
         
         parent = parent.parentElement
@@ -82,7 +82,7 @@ function addCard(parent, taskTitle, taskDescription, taskStart, taskEnd,taskStat
 
         let showDivButton = document.createElement("button")
         showDivButton.setAttribute("class","button showChore")
-        showDivButton.textContent = "aaa"
+        showDivButton.textContent = "Show details"
         parent.appendChild(showDivButton)
         
         parent = parent.parentElement
