@@ -53,6 +53,14 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+#buttonContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#counterDisplay{
+  font-weight: bold;
+}
 
 @media (prefers-color-scheme: light) {
   :root {

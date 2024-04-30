@@ -1,3 +1,6 @@
+button{
+    margin: 2%;
+}
 button.red{
     background-color: red;
 }
