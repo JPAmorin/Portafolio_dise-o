@@ -12,8 +12,8 @@ function MyTask({ title, id, onDelete }) {
         navigate(`/taskdetails`, { state: { taskId } }); 
     };
 
-    const navigateTaskForm = () => {
-        navigate("/taskform", { state: { taskId } }); 
+    const navigateTaskEditForm = () => {
+        navigate("/taskeditform", { state: { taskId } }); 
     };
 
     const handleDelete = async () => {
@@ -32,7 +32,7 @@ function MyTask({ title, id, onDelete }) {
     return (
         <div className="task">
             <MyButton text={title} onClick={navigateTaskDetails}/>
-            <MyButton text={"Editar tarea"} onClick={navigateTaskForm}/>
+            <MyButton text={"Editar tarea"} onClick={navigateTaskEditForm}/>
             <MyButton text={"Eliminar tarea"} onClick={handleDelete} /> 
         </div>
     );

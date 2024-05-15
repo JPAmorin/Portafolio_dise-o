@@ -81,8 +81,8 @@ export const deleteTask = async (taskId) => {
   }
 };
 
-export const updateTask = async (task) => {
-  const url = `http://localhost:3000/api/tasks/${task.id}`;
+export const updateTask = async (taskData) => {
+  const url = `http://localhost:3000/api/tasks/${taskData.id}`;
   
   try {
     const response = await fetch(url, {
@@ -90,11 +90,11 @@ export const updateTask = async (task) => {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(task)
+      body: JSON.stringify(taskData)
     });
 
     if (response.ok) {
-      console.log(`Task with ID ${task.id} updated successfully.`);
+      console.log("Task updated successfully.");
       return true;
     } else {
       console.error("Failed to update task.");

@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Main from './pages/main';
 import TaskDetails from './pages/taskdetails';
 import TaskForm from './pages/taskform';
+import TaskEditForm from './pages/edittaskform';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route element={<Main />} path='/' exact />
         <Route element={<TaskDetails />} path='/taskdetails' exact />
         <Route element={<TaskForm />} path='/taskform' exact />
+        <Route element={<TaskEditForm />} path='/taskeditform' exact />
       </Routes>
     </BrowserRouter>
   );

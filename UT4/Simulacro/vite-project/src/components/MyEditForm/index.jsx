@@ -1,15 +1,18 @@
 import React, { useState } from "react";
-import MyButton from "../MyButton/index.jsx"
-import { useNavigate } from "react-router-dom";
-import "../MyForm/index.css"
-import { createTask } from "../../api/api";
+import MyButton from "../MyButton/index.jsx";
+import { useNavigate, useLocation } from "react-router-dom";
+import "../MyForm/index.css";
+import { updateTask } from "../../api/api";
 
-function MyForm (){
+function MyEditForm () {
     const navigate = useNavigate();
+    const location = useLocation();
     const [tasks, setTasks] = useState([]);
-    
+    const { taskId } = location.state; // Obtener el taskId de la ubicación
+
     // Estado para mantener los datos del nuevo task
     const [newTaskData, setNewTaskData] = useState({
+        id: taskId, // Establecer el taskId
         title: "",
         description: "",
         assignedTo: "",
@@ -31,24 +34,33 @@ function MyForm (){
     const navigateMain = () => {
         navigate("/");
     };
-    const handleCreateTask = (newTask) => {
-        // Filtramos las tareas para eliminar la tarea con el ID correspondiente
-        const updatedTasks = prevState => prevState + newTask;
-        setTasks(updatedTasks); // Actualizamos el estado
-    };
 
-    const submitTask = async (newTaskData) => {
+    const submitTask = async () => {
         try {
-            const createdTask = await createTask(newTaskData)
-            handleCreateTask(createdTask)
-            navigateMain()
+            const success = await updateTask(newTaskData);
+            if (success) {
+                console.log("Task updated successfully.");
+                // Actualizar la tarea en el estado `tasks` si la actualización fue exitosa
+                const updatedTasks = tasks.map((task) => {
+                    if (task.id === newTaskData.id) {
+                        return newTaskData; // Actualizar la tarea modificada
+                    } else {
+                        return task; // Mantener las otras tareas sin cambios
+                    }
+                });
+                setTasks(updatedTasks);
+                navigateMain();
+            } else {
+                console.error("Failed to update task.");
+            }
         } catch (error) {
-            console.error("Error creating task:", error)
+            console.error("Error updating task:", error);
         }
-    }
+    };
+    
     return (
         <div id="taskForm">
-            <p>Crear tarea</p>
+            <p>Actualizar tarea</p>
             <input type="text" id="title" placeholder="Insert your task title..." onChange={handleChange} />
             <input type="text" id="description" placeholder="Insert your task description..." onChange={handleChange} />
             <input type="text" id="assignedTo" placeholder="Insert the assigned person..." onChange={handleChange} />
@@ -57,10 +69,10 @@ function MyForm (){
             <input type="text" id="status" placeholder="Insert the task status..." onChange={handleChange} />
             <input type="text" id="priority" placeholder="Insert the priority of the task..." onChange={handleChange} />
             <input type="text" id="comments" placeholder="Insert any comment about the task..." onChange={handleChange} />
-            <MyButton text="Add card" onClick={e => submitTask(newTaskData)} />
-            <MyButton text="Cancel" onClick={navigateMain}/>
+            <MyButton text="Update Task" onClick={submitTask} />
+            <MyButton text="Cancel" onClick={navigateMain} />
         </div>
     );
 }
 
-export default MyForm;
+export default MyEditForm;
