@@ -6,6 +6,7 @@ import { createTask } from "../../api/api";
 
 function MyForm (){
     const navigate = useNavigate();
+    const [tasks, setTasks] = useState([]);
     
     // Estado para mantener los datos del nuevo task
     const [newTaskData, setNewTaskData] = useState({
@@ -30,9 +31,20 @@ function MyForm (){
     const navigateMain = () => {
         navigate("/");
     };
-    const submitTask = (newTaskData) => {
-        createTask(newTaskData)
-        navigateMain()
+    const handleCreateTask = (newTask) => {
+        // Filtramos las tareas para eliminar la tarea con el ID correspondiente
+        const updatedTasks = prevState => prevState + newTask;
+        setTasks(updatedTasks); // Actualizamos el estado
+    };
+
+    const submitTask = async (newTaskData) => {
+        try {
+            const createdTask = await createTask(newTaskData)
+            handleCreateTask(createdTask)
+            navigateMain()
+        } catch (error) {
+            console.error("Error creating task:", error)
+        }
     }
     return (
         <div id="taskForm">

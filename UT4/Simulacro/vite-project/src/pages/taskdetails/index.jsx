@@ -32,7 +32,14 @@ function TaskDetails() {
         <>
             <p>Task details</p>
             {/* Utilizamos taskDetails en lugar de task */}
-            <p>{taskDetails && taskDetails.assignedTo}</p>
+            <p>{taskDetails && taskDetails.title}</p>
+            <p>{taskDetails && taskDetails.description}</p>
+            <p>Assigned to {taskDetails && taskDetails.assignedTo}</p>
+            <p>Start date: {taskDetails && taskDetails.startDate}</p>
+            <p>End date: {taskDetails && taskDetails.endDate}</p>
+            <p>Task status: {taskDetails && taskDetails.status}</p>
+            <p>Task prioirty: {taskDetails && taskDetails.priority}</p>
+            <p>{taskDetails && taskDetails.comments}</p>
             <MyButton text={"Go to board"} onClick={navigateToBoard} />
         </>
     );
