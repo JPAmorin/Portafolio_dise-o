@@ -1,0 +1,11 @@
+#gamesWrapper{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+@media (width < 426){
+    #gamesWrapper{
+        display: flex;
+        flex-direction: column;
+    }
+}
