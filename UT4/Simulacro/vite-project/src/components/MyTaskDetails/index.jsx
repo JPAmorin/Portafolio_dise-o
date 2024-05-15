@@ -1,6 +1,7 @@
 import React from "react";
 
-function MyTaskDetails({ title }) {
+function MyTaskDetails({ id, title, description, assignedTo, startDate, endDate, status, priority, comments }) {
+    
     return ();
 }
 
