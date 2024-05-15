@@ -1,13 +1,9 @@
-import React from "react";
-import "../MyGamesWrapper/index.css";
-import MyButton from "../MyButton";
-import { useNavigate } from "react-router-dom";
-
+import React from "react"
+import "../MyGamesWrapper/index.css"
 function MyGamesWrapper({ children }) {
-
     return (
     <div id="gamesWrapper">
         {children}
-    </div>);
+    </div>)
 }
 export default MyGamesWrapper
