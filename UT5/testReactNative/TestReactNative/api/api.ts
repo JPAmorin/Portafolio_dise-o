@@ -1,15 +1,120 @@
-export const getDogFacts = async () => {
-    const url = "https://dogapi.dog/api/v2/breeds"
-    try {
-        const response = await fetch(url)
-        if (response.ok){
-            const payload = await response.json()
-            return payload
-        } else{
-            console.error("An error happened.")
-            return []
-        }
-    } catch (error) {
-        console.error(error)
-    }
+type id = number
+type Element = {
+    id: number
+    title: string
+    description: string
+    assignedTo: string
+    startDate: string
+    endDate: string
+    status: string
+    priority: string
+    comments: string
 }
+
+export const getApiTasks = async () => {
+    const url = "http://localhost:3000/api/tasks";
+    try {
+      const response = await fetch(url);
+      if (response.ok) {
+        const payload = await response.json();
+        return payload;
+      } else {
+        console.error("An error happened");
+        return [];
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+export const getTaskById = async (id: id) => {
+  const url = "http://localhost:3000/api/tasks";
+  try {
+    const response = await fetch(url);
+    if (response.ok) {
+      let task
+      const payload = await response.json();
+      payload.forEach((element : Element) => {
+        if (element.id === id){
+          task = element
+        }
+      });
+      return task;
+    } else {
+      console.error("An error happened");
+      return [];
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+export const createTask = async (newTask : Element) => {
+  const url = "http://localhost:3000/api/tasks";
+
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newTask)
+    });
+
+    if (response.ok) {
+      const createdTask = await response.json();
+      console.log("Task created:", createdTask);
+      return createdTask;
+    } else {
+      console.error("Failed to create task:", response.statusText);
+      return null;
+    }
+  } catch (error) {
+    console.error("Error creating task:", error);
+    return null;
+  }
+}
+export const deleteTask = async (taskId : id) => {
+  const url = `http://localhost:3000/api/tasks/${taskId}`;
+  
+  try {
+    const response = await fetch(url, {
+      method: "DELETE"
+    });
+
+    if (response.ok) {
+      console.log(`Task with ID ${taskId} deleted successfully.`);
+      return true;
+    } else {
+      console.error("Failed to delete task.");
+      return false;
+    }
+  } catch (error) {
+    console.error("Error deleting task:", error);
+    return false;
+  }
+};
+
+export const updateTask = async (taskData : Element) => {
+  const url = `http://localhost:3000/api/tasks/${taskData.id}`;
+  
+  try {
+    const response = await fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(taskData)
+    });
+
+    if (response.ok) {
+      console.log("Task updated successfully.");
+      return true;
+    } else {
+      console.error("Failed to update task.");
+      return false;
+    }
+  } catch (error) {
+    console.error("Error updating task:", error);
+    return false;
+  }
+};
